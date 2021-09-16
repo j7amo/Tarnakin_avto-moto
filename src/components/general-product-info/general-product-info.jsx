@@ -1,5 +1,6 @@
 import React from 'react';
 import Slider from '../slider/slider';
+import Card from '../card/card';
 
 const sliderImages = [
   {
@@ -8,7 +9,8 @@ const sliderImages = [
     alt: 'Экстерьер автомобиля Марпех на фоне небоскрёбов',
     miniatureSrcStandard: '/assets/img/desktop-slide-min-1-1x.jpg',
     miniatureSrcRetina: '/assets/img/desktop-slide-min-1-2x.jpg',
-    miniatureAlt: 'Экстерьер автомобиля Марпех на фоне небоскрёбов. Уменьшенное изображение.',
+    miniatureAlt:
+      'Экстерьер автомобиля Марпех на фоне небоскрёбов. Уменьшенное изображение.',
   },
   {
     mainSrcStandard: '/assets/img/desktop-slide-2-1x.jpg',
@@ -24,14 +26,47 @@ const sliderImages = [
     alt: 'Спидометр автомобиля Марпех крупным планом',
     miniatureSrcStandard: '/assets/img/desktop-slide-min-3-1x.jpg',
     miniatureSrcRetina: '/assets/img/desktop-slide-min-3-2x.jpg',
-    miniatureAlt: 'Спидометр автомобиля Марпех крупным планом. Уменьшенное изображение.',
+    miniatureAlt:
+      'Спидометр автомобиля Марпех крупным планом. Уменьшенное изображение.',
   },
 ];
+
+const TechDetailsType = {
+  FUEL_TYPE: 'fuel-type',
+  TRANSMISSION_TYPE: 'transmission-type',
+  ENGINE_POWER: 'engine-power',
+  ENGINE_VOLUME: 'engine-volume',
+};
+
+const productInfo = {
+  productName: 'Марпех 11',
+  mainTechnicalDetails: [
+    {
+      name: 'бензин',
+      type: TechDetailsType.FUEL_TYPE,
+    },
+    {
+      name: 'механика',
+      type: TechDetailsType.TRANSMISSION_TYPE,
+    },
+    {
+      name: '100 л.с.',
+      type: TechDetailsType.ENGINE_POWER,
+    },
+    {
+      name: '1.4 л',
+      type: TechDetailsType.ENGINE_VOLUME,
+    },
+  ],
+  newPrice: 2300000,
+  oldPrice: 2400000,
+};
 
 function GeneralProductInfo() {
   return (
     <div>
-      <Slider sliderImages={sliderImages}/>
+      <Slider sliderImages={sliderImages} />
+      <Card productInfo={productInfo} />
     </div>
   );
 }
