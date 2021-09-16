@@ -1,11 +1,63 @@
 import React from 'react';
+import MainHeader from '../main-header/main-header';
+import MainFooter from '../main-footer/main-footer';
+
+const headerLinks = [
+  {
+    linkTitle: 'Автомобили',
+    href: '#',
+  },
+  {
+    linkTitle: 'Контакты',
+    href: '#',
+  },
+  {
+    linkTitle: 'Услуги',
+    href: '#',
+  },
+  {
+    linkTitle: 'Вакансии',
+    href: '#',
+  },
+];
+
+const footerLinks = [
+  {
+    linkTitle: 'Корпоративным клиентам',
+    href: '#',
+  },
+  {
+    linkTitle: 'Клиентам',
+    href: '#',
+  },
+  {
+    linkTitle: 'Аренда авто',
+    href: '#',
+  },
+  {
+    linkTitle: 'Каршеринг',
+    href: '#',
+  },
+  {
+    linkTitle: 'Как продать авто',
+    href: '#',
+  },
+  {
+    linkTitle: 'Trade-in',
+    href: '#',
+  },
+  {
+    linkTitle: 'Test drive',
+    href: '#',
+  },
+];
 
 function App() {
   return (
     <>
-      <header>Header</header>
+      <MainHeader headerLinks={headerLinks}/>
       <main>Main</main>
-      <footer>Footer</footer>
+      <MainFooter footerLinks={footerLinks}/>
     </>
   );
 }
