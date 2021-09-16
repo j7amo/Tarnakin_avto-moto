@@ -1,6 +1,8 @@
 import React from 'react';
 import MainHeader from '../main-header/main-header';
 import MainFooter from '../main-footer/main-footer';
+import MainPageMain from '../main-page-main/main-page-main';
+import ProductInfo from '../product-info/product-info';
 
 const headerLinks = [
   {
@@ -56,7 +58,11 @@ function App() {
   return (
     <>
       <MainHeader headerLinks={headerLinks}/>
-      <main>Main</main>
+      <MainPageMain>
+        <ProductInfo>
+          Информация о продукте!
+        </ProductInfo>
+      </MainPageMain>
       <MainFooter footerLinks={footerLinks}/>
     </>
   );
