@@ -60,8 +60,10 @@ function App() {
     <>
       <MainHeader headerLinks={headerLinks} />
       <MainPageMain>
-        <h1 className={styles['visually-hidden']}>Информация о модели автомобиля Марпех 11</h1>
-        <ProductInfo/>
+        <h1 className={styles['visually-hidden']}>
+          Информация о модели автомобиля Марпех 11
+        </h1>
+        <ProductInfo />
       </MainPageMain>
       <MainFooter footerLinks={footerLinks} />
     </>

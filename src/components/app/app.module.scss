@@ -6,9 +6,9 @@
   font-weight: 400;
   font-display: swap;
 
-  src: local('Roboto'),
-  url('../../assets/fonts/OpenSans-Regular.woff2') format('woff2'),
-  url('../../assets/fonts/OpenSans-Regular.woff') format('woff');
+  src: local('OpenSans'),
+    url('../../assets/fonts/OpenSans-Regular.woff2') format('woff2'),
+    url('../../assets/fonts/OpenSans-Regular.woff') format('woff');
 }
 
 @font-face {
@@ -17,9 +17,9 @@
   font-weight: 600;
   font-display: swap;
 
-  src: local('Roboto'),
-  url('../../assets/fonts/OpenSans-SemiBold.woff2') format('woff2'),
-  url('../../assets/fonts/OpenSans-SemiBold.woff') format('woff');
+  src: local('OpenSans'),
+    url('../../assets/fonts/OpenSans-SemiBold.woff2') format('woff2'),
+    url('../../assets/fonts/OpenSans-SemiBold.woff') format('woff');
 }
 
 @font-face {
@@ -28,9 +28,9 @@
   font-weight: 700;
   font-display: swap;
 
-  src: local('Roboto'),
-  url('../../assets/fonts/OpenSans-Bold.woff2') format('woff2'),
-  url('../../assets/fonts/OpenSans-Bold.woff') format('woff');
+  src: local('OpenSans'),
+    url('../../assets/fonts/OpenSans-Bold.woff2') format('woff2'),
+    url('../../assets/fonts/OpenSans-Bold.woff') format('woff');
 }
 
 body {
@@ -96,11 +96,6 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.container {
-  margin: 0 auto;
-  width: 1170px;
 }
 
 .visually-hidden {

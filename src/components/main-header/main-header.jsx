@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './main-header.module.scss';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import Logo from '../logo/logo';
@@ -7,13 +8,13 @@ import NavigationLink from '../navigation-link/navigation-link';
 
 function MainHeader({ headerLinks }) {
   return (
-    <header>
+    <header className={styles['main-header']}>
       <CenteringContainer>
-        <nav>
+        <nav className={styles['nav']}>
           <Logo />
-          <ul>
+          <ul className={styles['site-navigation']}>
             {headerLinks.map(({ linkTitle, href }) => (
-              <li key={nanoid()}>
+              <li key={nanoid()} className={styles['site-navigation__item']}>
                 <NavigationLink linkTitle={linkTitle} href={href} />
               </li>
             ))}

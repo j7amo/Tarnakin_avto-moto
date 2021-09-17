@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './slider.module.scss';
 import PropTypes from 'prop-types';
 import Button from '../button/button';
 import { nanoid } from 'nanoid';
@@ -8,7 +9,7 @@ function Slider({ sliderImages }) {
   const { mainSrcStandard, mainSrcRetina, alt } = activeSlide;
 
   return (
-    <div>
+    <div className={styles['slider']}>
       <div>
         <img
           srcSet={`${mainSrcStandard} 1x, ${mainSrcRetina} 2x`}

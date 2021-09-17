@@ -1,0 +1,59 @@
+.product-card {
+  padding-left: 54px;
+}
+
+.product-card__title {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 41px;
+  color: #48494d;
+  padding-bottom: 19px;
+}
+
+.product-card__details {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: 20px 7px;
+}
+
+.product-card__details-item {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(72, 73, 77, 0.5);
+
+  &--fuel-type {
+
+  }
+
+  &--transmission-type {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      width: 24px;
+      height: 22px;
+      background: url("../../assets/img/gasoline.svg");
+    }
+  }
+
+  &--engine-power {
+
+  }
+
+  &--engine-volume {
+
+  }
+}
+
+.product-card__prices {
+}
+
+.product-card__new-price {
+}
+
+.product-card__old-price {
+}
