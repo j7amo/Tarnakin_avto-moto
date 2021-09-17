@@ -23,7 +23,7 @@ function Slider({ sliderImages }) {
             setActiveSlide(
               currentIndex === 0
                 ? sliderImages[currentIndex]
-                : sliderImages[currentIndex - 1]
+                : sliderImages[currentIndex - 1],
             );
           }}
           disabled={sliderImages.indexOf(activeSlide) === 0}
@@ -41,7 +41,7 @@ function Slider({ sliderImages }) {
                   alt={miniatureAlt}
                 />
               </li>
-            )
+            ),
           )}
         </ul>
         <Button
@@ -50,7 +50,7 @@ function Slider({ sliderImages }) {
             setActiveSlide(
               currentIndex === sliderImages.length - 1
                 ? sliderImages[currentIndex]
-                : sliderImages[currentIndex + 1]
+                : sliderImages[currentIndex + 1],
             );
           }}
           disabled={
@@ -69,7 +69,7 @@ Slider.propTypes = {
     PropTypes.shape({
       src: PropTypes.string,
       alt: PropTypes.string,
-    })
+    }),
   ),
 };
 

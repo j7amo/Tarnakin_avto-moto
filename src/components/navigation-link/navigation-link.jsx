@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function NavigationLink({linkTitle, href}) {
-  return(
-    <a href={href}>
-      {linkTitle}
-    </a>
-  );
+function NavigationLink({ linkTitle, href }) {
+  return <a href={href}>{linkTitle}</a>;
 }
 
 NavigationLink.propTypes = {

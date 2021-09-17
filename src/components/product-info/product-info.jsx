@@ -10,7 +10,7 @@ function ProductInfo() {
     <section>
       <CenteringContainer>
         <GeneralProductInfo />
-        <AdditionalProductInfo tabs={tabs}/>
+        <AdditionalProductInfo tabs={tabs} />
       </CenteringContainer>
     </section>
   );

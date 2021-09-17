@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function CenteringContainer({children}) {
-  return(
-    <div>
-      {children}
-    </div>
-  );
+function CenteringContainer({ children }) {
+  return <div>{children}</div>;
 }
 
 CenteringContainer.propTypes = {

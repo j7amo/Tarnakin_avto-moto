@@ -1,5 +1,5 @@
 import React from 'react';
-import {nanoid} from 'nanoid';
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import Logo from '../logo/logo';
 import CenteringContainer from '../centering-container/centering-container';
@@ -12,10 +12,11 @@ function MainHeader({ headerLinks }) {
         <nav>
           <Logo />
           <ul>
-            {headerLinks.map(({linkTitle, href}) => (
+            {headerLinks.map(({ linkTitle, href }) => (
               <li key={nanoid()}>
-                <NavigationLink linkTitle={linkTitle} href={href}/>
-              </li>))}
+                <NavigationLink linkTitle={linkTitle} href={href} />
+              </li>
+            ))}
           </ul>
         </nav>
       </CenteringContainer>
@@ -24,10 +25,12 @@ function MainHeader({ headerLinks }) {
 }
 
 MainHeader.propTypes = {
-  headerLinks: PropTypes.arrayOf(PropTypes.shape({
-    linkTitle: PropTypes.string,
-    href: PropTypes.string,
-  })),
+  headerLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      linkTitle: PropTypes.string,
+      href: PropTypes.string,
+    }),
+  ),
 };
 
 export default MainHeader;

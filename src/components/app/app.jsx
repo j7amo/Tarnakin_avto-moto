@@ -57,13 +57,11 @@ const footerLinks = [
 function App() {
   return (
     <>
-      <MainHeader headerLinks={headerLinks}/>
+      <MainHeader headerLinks={headerLinks} />
       <MainPageMain>
-        <ProductInfo>
-          Информация о продукте!
-        </ProductInfo>
+        <ProductInfo>Информация о продукте!</ProductInfo>
       </MainPageMain>
-      <MainFooter footerLinks={footerLinks}/>
+      <MainFooter footerLinks={footerLinks} />
     </>
   );
 }

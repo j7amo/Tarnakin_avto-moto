@@ -1,9 +1,9 @@
 import React from 'react';
 
 function Logo() {
-  return(
-    <a href='/'>
-      <img src='/assets/img/logo.svg' alt='Логотип Авто-Мото'/>
+  return (
+    <a href="/">
+      <img src="/assets/img/logo.svg" alt="Логотип Авто-Мото" />
     </a>
   );
 }

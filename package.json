@@ -49,6 +49,7 @@
     "redux-devtools-extension": "^2.13.9"
   },
   "prettier": {
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "all"
   }
 }
