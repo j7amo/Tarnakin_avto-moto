@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './app.module.scss';
 import MainHeader from '../main-header/main-header';
 import MainFooter from '../main-footer/main-footer';
 import MainPageMain from '../main-page-main/main-page-main';
@@ -59,7 +60,8 @@ function App() {
     <>
       <MainHeader headerLinks={headerLinks} />
       <MainPageMain>
-        <ProductInfo>Информация о продукте!</ProductInfo>
+        <h1 className={styles['visually-hidden']}>Информация о модели автомобиля Марпех 11</h1>
+        <ProductInfo/>
       </MainPageMain>
       <MainFooter footerLinks={footerLinks} />
     </>
