@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './product-reviews.module.scss';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
@@ -21,43 +22,54 @@ const getRatingsTextForm = (productRating) => {
 
 function ProductReviews({ productReviews }) {
   return (
-    <div>
-      <ul>
-        {productReviews.map(
-          ({
-            author,
-            advantages,
-            disadvantages,
-            comment,
-            rating,
-            reviewDate,
-          }) => (
-            <li key={nanoid()}>
-              <h3>{author}</h3>
-              <dl>
-                <div>
-                  <dt>Достоинства</dt>
-                  <dd>{advantages}</dd>
-                </div>
-                <div>
-                  <dt>Недостатки</dt>
-                  <dd>{disadvantages}</dd>
-                </div>
-                <div>
-                  <dt>Комментарий</dt>
-                  <dd>{comment}</dd>
-                </div>
-              </dl>
-              <div>
-                <span>{rating}</span>
-                <span>{getRatingsTextForm(rating)}</span>
+    <ul className={styles['reviews']}>
+      {productReviews.map(
+        ({
+          author,
+          advantages,
+          disadvantages,
+          comment,
+          rating,
+          reviewDate,
+        }) => (
+          <li key={nanoid()} className={styles['review']}>
+            <h3 className={styles['review__author']}>{author}</h3>
+            <dl className={styles['review__main-points']}>
+              <div
+                className={`${styles['review__main-point']} ${styles['review__main-point--advantages']}`}
+              >
+                <dt className={styles['review__point-name']}>Достоинства</dt>
+                <dd className={styles['review__point-value']}>{advantages}</dd>
               </div>
-              <div>{reviewDate}</div>
-            </li>
-          ),
-        )}
-      </ul>
-    </div>
+              <div
+                className={`${styles['review__main-point']} ${styles['review__main-point--disadvantages']}`}
+              >
+                <dt className={styles['review__point-name']}>Недостатки</dt>
+                <dd className={styles['review__point-value']}>
+                  {disadvantages}
+                </dd>
+              </div>
+              <div
+                className={`${styles['review__main-point']} ${styles['review__main-point--comment']}`}
+              >
+                <dt className={styles['review__point-name']}>Комментарий</dt>
+                <dd className={styles['review__point-value']}>{comment}</dd>
+              </div>
+            </dl>
+            <div className={styles['review__rating']}>
+              <span className={styles['review__stars-rating']}>{rating}</span>
+              <span className={styles['review__text-rating']}>
+                {getRatingsTextForm(rating)}
+              </span>
+            </div>
+            <div className={styles['review__meta']}>
+              <div className={styles['review__date']}>{reviewDate}</div>
+              <a className={styles['review__answer']} href='#'>Ответить</a>
+            </div>
+          </li>
+        ),
+      )}
+    </ul>
   );
 }
 

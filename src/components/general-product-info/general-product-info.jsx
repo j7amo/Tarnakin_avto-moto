@@ -71,8 +71,8 @@ const productInfo = {
       type: TechDetailsType.ENGINE_VOLUME,
     },
   ],
-  newPrice: 2300000,
-  oldPrice: 2400000,
+  newPrice: '2 300 000',
+  oldPrice: '2 400 000',
 };
 
 function GeneralProductInfo() {

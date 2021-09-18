@@ -1,0 +1,105 @@
+.review {
+  margin-bottom: 41px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.review__main-points {
+  margin-bottom: 20px;
+}
+
+.review__author {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  color: #48494D;
+  margin-bottom: 12px;
+}
+
+.review__main-point {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 13px;
+
+  &--advantages {
+    &::before {
+      content: '+';
+      position: absolute;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      top:0;
+      left: 0;
+      color: #D12136;
+    }
+  }
+
+  &--disadvantages {
+    &::before {
+      content: '-';
+      position: absolute;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      top:0;
+      left: 0;
+      color: #D12136;
+    }
+  }
+
+  &:last-child {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+}
+
+.review__point-name,
+.review__point-value {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000000;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+
+.review__point-value {
+  font-weight: normal;
+  margin: 0;
+}
+
+.review__rating,
+.review__meta {
+  display: flex;
+}
+
+.review__stars-rating {
+  margin-right: 20px;
+}
+
+.review__text-rating,
+.review__answer {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 20px;
+  color: #D12136;
+}
+
+.review__date {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #000000;
+  opacity: 0.4;
+  margin-right: 26px;
+}

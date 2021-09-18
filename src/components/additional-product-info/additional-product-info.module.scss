@@ -1,0 +1,23 @@
+.info__header {
+  margin-bottom: 30px;
+}
+
+.info__items {
+  display: flex;
+}
+
+.info__item {
+  display: block;
+  padding: 11px 14px 14px 14px;
+  border: 1px solid #d7d9df;
+  min-width: 195px;
+  text-align: center;
+  box-sizing: border-box;
+
+  &:hover,
+  &--active {
+    border: 1px solid #d12136;
+    background: #d12136;
+    color: #ffffff;
+  }
+}

@@ -11,21 +11,31 @@ function Card({ productInfo }) {
     <div className={styles['product-card']}>
       <h2 className={styles['product-card__title']}>{productName}</h2>
       <ul className={styles['product-card__details']}>
-        {mainTechnicalDetails.map(({ name, type }) => (
-          <li
-            key={nanoid()}
-            className={`${styles['product-card__details-item']} ${styles['product-card__details-item']}--${type}`}
-          >
-            {name}
-          </li>
-        ))}
+        {mainTechnicalDetails.map(({ name, type }) => {
+          const combinedClassName =
+            styles[`product-card__details-item--${type}`];
+          return (
+            <li
+              key={nanoid()}
+              className={`${styles['product-card__details-item']} ${combinedClassName}`}
+            >
+              {name}
+            </li>
+          );
+        })}
       </ul>
       <div className={styles['product-card__prices']}>
-        <span className={styles['product-card__new-price']}>{newPrice}</span>
-        <span className={styles['product-card__old-price']}>{oldPrice}</span>
+        <span className={styles['product-card__new-price']}>
+          {newPrice}&#x20bd;
+        </span>
+        <span className={styles['product-card__old-price']}>
+          {oldPrice}&#x20bd;
+        </span>
       </div>
-      <Button>Оставить заявку</Button>
-      <Button>В кредит от 11 000 Р</Button>
+      <div className={styles['product-card__button-container']}>
+        <Button modifier="primary">Оставить заявку</Button>
+        <Button modifier="secondary">В кредит от 11 000 Р</Button>
+      </div>
     </div>
   );
 }
@@ -39,8 +49,8 @@ Card.propTypes = {
         type: PropTypes.string,
       }),
     ),
-    newPrice: PropTypes.number,
-    oldPrice: PropTypes.number,
+    newPrice: PropTypes.string,
+    oldPrice: PropTypes.string,
   }),
 };
 

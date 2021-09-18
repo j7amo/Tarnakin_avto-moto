@@ -1,7 +1,9 @@
 import React from 'react';
+import styles from './contacts.module.scss';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { ContactType } from '../../const';
+import MapContainer from '../map-container/map-container';
 
 const getElementBasedOnType = (contactType, value) => {
   switch (contactType) {
@@ -18,16 +20,18 @@ const getElementBasedOnType = (contactType, value) => {
 
 function Contacts({ contacts }) {
   return (
-    <div>
-      <dl>
+    <div className={styles['contacts']}>
+      <dl className={styles['contacts__list']}>
         {contacts.map(({ name, value, type }) => (
-          <div key={nanoid()}>
-            <dt>{name}</dt>
-            <dd>{getElementBasedOnType(type, value)}</dd>
+          <div key={nanoid()} className={styles['contacts__item']}>
+            <dt className={styles['contacts__name']}>{name}</dt>
+            <dd className={styles['contacts__value']}>
+              {getElementBasedOnType(type, value)}
+            </dd>
           </div>
         ))}
       </dl>
-      <div>Здесь будет карта!</div>
+      <MapContainer/>
     </div>
   );
 }

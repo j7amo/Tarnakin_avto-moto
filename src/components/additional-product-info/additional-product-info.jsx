@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './additional-product-info.module.scss';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import ProductTechnicalDetails from '../product-technical-details/product-technical-details';
@@ -102,12 +103,24 @@ function AdditionalProductInfo({ tabs }) {
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   return (
-    <div>
-      <header>
-        <ul onClick={(evt) => setActiveTab(evt.target.textContent)}>
+    <div className={styles['info']}>
+      <header className={styles['info__header']}>
+        <ul
+          className={styles['info__items']}
+          onClick={(evt) => tabs.includes(evt.target.textContent) ? setActiveTab(evt.target.textContent) : ''}
+        >
           {tabs.map((item) => (
             <li key={nanoid()}>
-              <a href="#">{item}</a>
+              <a
+                href="#"
+                className={
+                  item === activeTab
+                    ? `${styles['info__item']} ${styles['info__item--active']}`
+                    : styles['info__item']
+                }
+              >
+                {item}
+              </a>
             </li>
           ))}
         </ul>

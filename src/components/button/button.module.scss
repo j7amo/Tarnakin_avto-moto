@@ -1,0 +1,55 @@
+.button {
+  padding: 16px 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 19px;
+  text-align: center;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+
+  &--primary {
+    background: #d12136;
+    color: #ffffff;
+
+    &:hover {
+      background: #bd0c21;
+    }
+  }
+
+  &--secondary {
+    background: #ffffff;
+    color: #d12136;
+    border: 1px solid #d12136;
+
+    &:hover {
+      background: #d12136;
+      color: #ffffff;
+    }
+  }
+
+  &--rounded-left,
+  &--rounded-right {
+    padding: 0;
+    width: 52px;
+    height: 52px;
+    background: #ffffff;
+    border: 1px solid #d7d9df;
+    border-radius: 50%;
+    background: url('../../assets/img/arrow.svg') no-repeat 50% 50%;
+
+    &:disabled {
+      opacity: 0.4;
+    }
+
+    &:not(:disabled):hover {
+      opacity: 0.6;
+    }
+  }
+
+  &--rounded-right {
+    transform: rotate(180deg);
+  }
+}

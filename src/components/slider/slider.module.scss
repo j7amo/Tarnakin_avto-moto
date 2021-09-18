@@ -1,3 +1,26 @@
 .slider {
   padding-top: 16px;
 }
+
+.slider__active-slide-container {
+  margin-bottom: 39px;
+}
+
+.slider__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.slider__miniatures {
+  display: flex;
+  width: 434px;
+}
+
+.slider__miniature {
+  margin-right: 25px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}

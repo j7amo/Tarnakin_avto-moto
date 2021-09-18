@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import CenteringContainer from '../centering-container/centering-container';
 import NavigationLink from '../navigation-link/navigation-link';
 import { nanoid } from 'nanoid';
+import styles from './main-footer.module.scss';
 
 function MainFooter({ footerLinks }) {
   return (
-    <footer>
+    <footer className={styles['main-footer']}>
       <CenteringContainer>
-        <ul>
+        <ul className={styles['additional-site-navigation']}>
           {footerLinks.map(({ linkTitle, href }) => (
             <li key={nanoid()}>
               <NavigationLink linkTitle={linkTitle} href={href} />

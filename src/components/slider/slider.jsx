@@ -10,15 +10,16 @@ function Slider({ sliderImages }) {
 
   return (
     <div className={styles['slider']}>
-      <div>
+      <div className={styles['slider__active-slide-container']}>
         <img
           srcSet={`${mainSrcStandard} 1x, ${mainSrcRetina} 2x`}
           src={mainSrcStandard}
           alt={alt}
         />
       </div>
-      <div>
+      <div className={styles['slider__controls']}>
         <Button
+          modifier="rounded-left"
           onClick={() => {
             const currentIndex = sliderImages.indexOf(activeSlide);
             setActiveSlide(
@@ -28,14 +29,11 @@ function Slider({ sliderImages }) {
             );
           }}
           disabled={sliderImages.indexOf(activeSlide) === 0}
-        >
-          Назад
-        </Button>
-        <ul>
-          {/*контейнер для миниатюр*/}
+        />
+        <ul className={styles['slider__miniatures']}>
           {sliderImages.map(
             ({ miniatureSrcStandard, miniatureSrcRetina, miniatureAlt }) => (
-              <li key={nanoid()}>
+              <li key={nanoid()} className={styles['slider__miniature']}>
                 <img
                   srcSet={`${miniatureSrcStandard} 1x, ${miniatureSrcRetina} 2x`}
                   src={miniatureSrcStandard}
@@ -46,6 +44,7 @@ function Slider({ sliderImages }) {
           )}
         </ul>
         <Button
+          modifier="rounded-right"
           onClick={() => {
             const currentIndex = sliderImages.indexOf(activeSlide);
             setActiveSlide(
@@ -57,9 +56,7 @@ function Slider({ sliderImages }) {
           disabled={
             sliderImages.indexOf(activeSlide) === sliderImages.length - 1
           }
-        >
-          Вперёд
-        </Button>
+        />
       </div>
     </div>
   );
