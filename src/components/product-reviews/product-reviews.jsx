@@ -2,6 +2,9 @@ import React from 'react';
 import styles from './product-reviews.module.scss';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import Button from '../button/button';
+import { connect } from 'react-redux';
+import { setModalViewStatus } from '../../store/action';
 
 const getRatingsTextForm = (productRating) => {
   switch (productRating) {
@@ -20,56 +23,66 @@ const getRatingsTextForm = (productRating) => {
   }
 };
 
-function ProductReviews({ productReviews }) {
+function ProductReviews({ productReviews, onReviewButtonClick }) {
   return (
-    <ul className={styles['reviews']}>
-      {productReviews.map(
-        ({
-          author,
-          advantages,
-          disadvantages,
-          comment,
-          rating,
-          reviewDate,
-        }) => (
-          <li key={nanoid()} className={styles['review']}>
-            <h3 className={styles['review__author']}>{author}</h3>
-            <dl className={styles['review__main-points']}>
-              <div
-                className={`${styles['review__main-point']} ${styles['review__main-point--advantages']}`}
-              >
-                <dt className={styles['review__point-name']}>Достоинства</dt>
-                <dd className={styles['review__point-value']}>{advantages}</dd>
+    <div className={styles['reviews']}>
+      <Button modifier="secondary" onClick={() => onReviewButtonClick(true)}>
+        Оставить отзыв
+      </Button>
+      <ul className={styles['reviews__list']}>
+        {productReviews.map(
+          ({
+            author,
+            advantages,
+            disadvantages,
+            comment,
+            rating,
+            reviewDate,
+          }) => (
+            <li
+              key={nanoid()}
+              className={`${styles['reviews__item']} ${styles['review']}`}
+            >
+              <h3 className={styles['review__author']}>{author}</h3>
+              <dl className={styles['review__main-points']}>
+                <div
+                  className={`${styles['review__main-point']} ${styles['review__main-point--advantages']}`}
+                >
+                  <dt className={styles['review__point-name']}>Достоинства</dt>
+                  <dd className={styles['review__point-value']}>
+                    {advantages}
+                  </dd>
+                </div>
+                <div
+                  className={`${styles['review__main-point']} ${styles['review__main-point--disadvantages']}`}
+                >
+                  <dt className={styles['review__point-name']}>Недостатки</dt>
+                  <dd className={styles['review__point-value']}>
+                    {disadvantages}
+                  </dd>
+                </div>
+                <div
+                  className={`${styles['review__main-point']} ${styles['review__main-point--comment']}`}
+                >
+                  <dt className={styles['review__point-name']}>Комментарий</dt>
+                  <dd className={styles['review__point-value']}>{comment}</dd>
+                </div>
+              </dl>
+              <div className={styles['review__rating']}>
+                <span className={styles['review__stars-rating']}>{rating}</span>
+                <span className={styles['review__text-rating']}>
+                  {getRatingsTextForm(rating)}
+                </span>
               </div>
-              <div
-                className={`${styles['review__main-point']} ${styles['review__main-point--disadvantages']}`}
-              >
-                <dt className={styles['review__point-name']}>Недостатки</dt>
-                <dd className={styles['review__point-value']}>
-                  {disadvantages}
-                </dd>
+              <div className={styles['review__meta']}>
+                <div className={styles['review__date']}>{reviewDate}</div>
+                <span className={styles['review__answer']}>Ответить</span>
               </div>
-              <div
-                className={`${styles['review__main-point']} ${styles['review__main-point--comment']}`}
-              >
-                <dt className={styles['review__point-name']}>Комментарий</dt>
-                <dd className={styles['review__point-value']}>{comment}</dd>
-              </div>
-            </dl>
-            <div className={styles['review__rating']}>
-              <span className={styles['review__stars-rating']}>{rating}</span>
-              <span className={styles['review__text-rating']}>
-                {getRatingsTextForm(rating)}
-              </span>
-            </div>
-            <div className={styles['review__meta']}>
-              <div className={styles['review__date']}>{reviewDate}</div>
-              <a className={styles['review__answer']} href='#'>Ответить</a>
-            </div>
-          </li>
-        ),
-      )}
-    </ul>
+            </li>
+          ),
+        )}
+      </ul>
+    </div>
   );
 }
 
@@ -84,6 +97,18 @@ ProductReviews.propTypes = {
       reviewDate: PropTypes.string,
     }),
   ),
+  onReviewButtonClick: PropTypes.func,
 };
 
-export default ProductReviews;
+const mapDispatchToProps = (dispatch) => ({
+  onReviewButtonClick(status) {
+    dispatch(setModalViewStatus(status));
+  },
+});
+
+const ConnectedProductReviews = connect(
+  null,
+  mapDispatchToProps,
+)(ProductReviews);
+
+export default ConnectedProductReviews;

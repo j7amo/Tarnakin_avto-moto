@@ -1,9 +1,12 @@
 import React from 'react';
 import styles from './app.module.scss';
+import PropTypes from 'prop-types';
 import MainHeader from '../main-header/main-header';
 import MainFooter from '../main-footer/main-footer';
 import MainPageMain from '../main-page-main/main-page-main';
 import ProductInfo from '../product-info/product-info';
+import ReviewModal from '../review-modal/review-modal';
+import { connect } from 'react-redux';
 
 const headerLinks = [
   {
@@ -55,7 +58,7 @@ const footerLinks = [
   },
 ];
 
-function App() {
+function App({ viewStatus }) {
   return (
     <>
       <MainHeader headerLinks={headerLinks} />
@@ -64,10 +67,21 @@ function App() {
           Информация о модели автомобиля Марпех 11
         </h1>
         <ProductInfo />
+        {viewStatus && <ReviewModal />}
       </MainPageMain>
       <MainFooter footerLinks={footerLinks} />
     </>
   );
 }
 
-export default App;
+App.propTypes = {
+  viewStatus: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  viewStatus: state.modal.viewStatus,
+});
+
+const ConnectedApp = connect(mapStateToProps, null)(App);
+
+export default ConnectedApp;

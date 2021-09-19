@@ -52,4 +52,16 @@
   &--rounded-right {
     transform: rotate(180deg);
   }
+
+  &--cross {
+    width: 15px;
+    height: 15px;
+    padding: 0;
+    background: url('../../assets/img/close.svg') no-repeat;
+    opacity: 0.6;
+
+    &:hover {
+      opacity: 1.0;
+    }
+  }
 }
