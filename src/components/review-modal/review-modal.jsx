@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './review-modal.module.scss';
 import globalStyles from '../app/app.module.scss';
 import PropTypes from 'prop-types';
 import Button from '../button/button';
 import {
-  addReview,
+  addReview, clearModalData,
   setAdvantages,
   setComment,
   setDisadvantages,
@@ -14,7 +14,6 @@ import {
 } from '../../store/action';
 import { connect } from 'react-redux';
 import Rating from '../rating/rating';
-import rating from '../rating/rating';
 
 function ReviewModal({
   name,
@@ -30,7 +29,31 @@ function ReviewModal({
   onReviewSubmit,
   onModalWindowClose,
 }) {
+  const [nameInputError, setNameInputError] = useState(true);
+  const [commentInputError, setCommentInputError] = useState(true);
   const overlayRef = useRef(null);
+  const nameInputContainerClassName = nameInputError
+    ? `${styles['form__field']} ${styles['form__field--name']} ${styles['form__field--error']}`
+    : `${styles['form__field']} ${styles['form__field--name']}`;
+  const commentInputContainerClassName = commentInputError
+    ? `${styles['form__field']} ${styles['form__field--textarea']} ${styles['form__field--error']}`
+    : `${styles['form__field']} ${styles['form__field--textarea']}`;
+
+  useEffect(() => {
+    if (!name) {
+      setNameInputError(true);
+    } else if (name) {
+      setNameInputError(false);
+    }
+  }, [name]);
+
+  useEffect(() => {
+    if (!comment) {
+      setCommentInputError(true);
+    } else if (comment) {
+      setCommentInputError(false);
+    }
+  }, [comment]);
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -52,6 +75,17 @@ function ReviewModal({
     };
   }, []);
 
+  useEffect(() => {
+    const reviewModalData = {
+      name,
+      advantages,
+      disadvantages,
+      modalRating,
+      comment,
+    };
+    localStorage.setItem('reviewModalData', JSON.stringify(reviewModalData));
+  }, [name, advantages, disadvantages, modalRating, comment]);
+
   const handleReviewSubmit = () => {
     const review = {
       name: name,
@@ -61,6 +95,7 @@ function ReviewModal({
       comment: comment,
     };
     onReviewSubmit(review);
+    localStorage.removeItem('reviewModalData');
     onModalWindowClose();
   };
 
@@ -74,9 +109,7 @@ function ReviewModal({
           action=""
         >
           <div className={styles['form__fields-container']}>
-            <div
-              className={`${styles['form__field']} ${styles['form__field--name']}`}
-            >
+            <div className={nameInputContainerClassName}>
               <label htmlFor="name" className={globalStyles['visually-hidden']}>
                 Введите ваше имя
               </label>
@@ -131,9 +164,7 @@ function ReviewModal({
                 onRatingChange={onRatingChange}
               />
             </span>
-            <div
-              className={`${styles['form__field']} ${styles['form__field--textarea']}`}
-            >
+            <div className={commentInputContainerClassName}>
               <label
                 htmlFor="comment"
                 className={globalStyles['visually-hidden']}
@@ -141,7 +172,7 @@ function ReviewModal({
                 Оставьте ваш комментарий о продукте
               </label>
               <textarea
-                className={`${styles['form__input']} ${styles['form__input--textarea']}`}
+                className={`${styles['form__input']} ${styles['form__input--textarea']} ${styles['form__field--error']}`}
                 id="comment"
                 placeholder="Комментарий"
                 required
@@ -150,7 +181,12 @@ function ReviewModal({
               />
             </div>
           </div>
-          <Button modifier="primary" type="submit" onClick={handleReviewSubmit}>
+          <Button
+            modifier="primary"
+            type="submit"
+            onClick={handleReviewSubmit}
+            disabled={!name || !comment}
+          >
             Оставить отзыв
           </Button>
         </form>
@@ -200,6 +236,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onReviewSubmit(reviewData) {
     dispatch(addReview(reviewData));
+    dispatch(clearModalData());
   },
   onModalWindowClose() {
     dispatch(setModalViewStatus(false));

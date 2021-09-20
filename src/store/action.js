@@ -5,6 +5,7 @@ export const ActionType = {
   SET_DISADVANTAGES: 'modal/disadvantagesSet',
   SET_RATING: 'modal/ratingSet',
   SET_COMMENT: 'modal/commentSet',
+  CLEAR_MODAL_DATA: 'modal/modalDataCleared',
   ADD_REVIEW: 'reviews/reviewAdded',
 };
 
@@ -47,6 +48,12 @@ export function setComment(comment) {
   return {
     type: ActionType.SET_COMMENT,
     payload: comment,
+  };
+}
+
+export function clearModalData() {
+  return {
+    type: ActionType.CLEAR_MODAL_DATA,
   };
 }
 

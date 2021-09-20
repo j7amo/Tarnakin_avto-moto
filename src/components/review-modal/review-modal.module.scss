@@ -79,6 +79,20 @@
       color: #D12136;
     }
   }
+
+  &--error {
+    &::after {
+      content: 'Пожалуйста, заполните поле';
+      position: absolute;
+      top: -23px;
+      left: 0;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 19px;
+      color: #FF0000;
+    }
+  }
 }
 
 .form__input {
