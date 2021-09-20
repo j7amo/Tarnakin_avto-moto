@@ -7,6 +7,15 @@ import { nanoid } from 'nanoid';
 function Slider({ sliderImages }) {
   const [activeSlide, setActiveSlide] = useState(sliderImages[0]);
   const { mainSrcStandard, mainSrcRetina, alt } = activeSlide;
+  const activeSlideIndex = sliderImages.indexOf(activeSlide);
+  let slidesToMap = [];
+  if (sliderImages.length - 1 - activeSlideIndex > 1) {
+    slidesToMap = sliderImages.slice(activeSlideIndex, activeSlideIndex + 3);
+  } else if (sliderImages.length - 1 - activeSlideIndex === 1) {
+    slidesToMap = sliderImages.slice(activeSlideIndex - 1, activeSlideIndex + 2);
+  } else if (sliderImages.length - 1 - activeSlideIndex === 0) {
+    slidesToMap = sliderImages.slice(activeSlideIndex - 2, activeSlideIndex + 1);
+  }
 
   return (
     <div className={styles['slider']}>
@@ -31,7 +40,7 @@ function Slider({ sliderImages }) {
           disabled={sliderImages.indexOf(activeSlide) === 0}
         />
         <ul className={styles['slider__miniatures']}>
-          {sliderImages.map(
+          {slidesToMap.map(
             ({ miniatureSrcStandard, miniatureSrcRetina, miniatureAlt }) => (
               <li key={nanoid()} className={styles['slider__miniature']}>
                 <img
