@@ -71,7 +71,7 @@ function ProductReviews({ productReviews, onReviewButtonClick }) {
               </dl>
               <div className={styles['review__rating']}>
                 <span className={styles['review__stars-rating']}>
-                  <Rating rating={rating}/>
+                  <Rating rating={rating} />
                 </span>
                 <span className={styles['review__text-rating']}>
                   {getRatingsTextForm(rating)}
@@ -103,6 +103,10 @@ ProductReviews.propTypes = {
   onReviewButtonClick: PropTypes.func,
 };
 
+const mapStateToProps = (state) => ({
+  productReviews: state.reviews.reviews,
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onReviewButtonClick(status) {
     dispatch(setModalViewStatus(status));
@@ -110,7 +114,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const ConnectedProductReviews = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ProductReviews);
 

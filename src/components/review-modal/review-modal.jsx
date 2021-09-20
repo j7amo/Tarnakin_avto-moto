@@ -3,15 +3,34 @@ import styles from './review-modal.module.scss';
 import globalStyles from '../app/app.module.scss';
 import PropTypes from 'prop-types';
 import Button from '../button/button';
-import { setModalViewStatus } from '../../store/action';
+import {
+  addReview,
+  setAdvantages,
+  setComment,
+  setDisadvantages,
+  setModalViewStatus,
+  setName,
+  setRating
+} from '../../store/action';
 import { connect } from 'react-redux';
+import Rating from '../rating/rating';
+import rating from '../rating/rating';
 
-function ReviewModal({ onModalWindowClose }) {
+function ReviewModal({
+  name,
+  advantages,
+  disadvantages,
+  modalRating,
+  comment,
+  onNameChange,
+  onAdvantagesChange,
+  onDisadvantagesChange,
+  onRatingChange,
+  onCommentChange,
+  onReviewSubmit,
+  onModalWindowClose,
+}) {
   const overlayRef = useRef(null);
-  const nameRef = useRef(null);
-  const advantagesRef = useRef(null);
-  const disAdvantagesRef = useRef(null);
-  const commentRef = useRef(null);
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -32,6 +51,18 @@ function ReviewModal({ onModalWindowClose }) {
       window.removeEventListener('keydown', closeOnEsc);
     };
   }, []);
+
+  const handleReviewSubmit = () => {
+    const review = {
+      name: name,
+      advantages: advantages,
+      disadvantages: disadvantages,
+      rating: modalRating,
+      comment: comment,
+    };
+    onReviewSubmit(review);
+    onModalWindowClose();
+  };
 
   return (
     <div className={styles['overlay']} ref={overlayRef}>
@@ -56,7 +87,8 @@ function ReviewModal({ onModalWindowClose }) {
                 placeholder="Имя"
                 required
                 autoFocus
-                ref={nameRef}
+                value={name}
+                onChange={onNameChange}
               />
             </div>
             <div className={styles['form__field']}>
@@ -71,7 +103,8 @@ function ReviewModal({ onModalWindowClose }) {
                 id="advantages"
                 type="text"
                 placeholder="Достоинства"
-                ref={advantagesRef}
+                value={advantages}
+                onChange={onAdvantagesChange}
               />
             </div>
             <div className={styles['form__field']}>
@@ -86,10 +119,18 @@ function ReviewModal({ onModalWindowClose }) {
                 id="disadvantages"
                 type="text"
                 placeholder="Недостатки"
-                ref={disAdvantagesRef}
+                value={disadvantages}
+                onChange={onDisadvantagesChange}
               />
             </div>
-            <span>Здесь будет блок со звёздами!</span>
+            <span className={styles['form__rating']}>
+              Оцените товар
+              <Rating
+                rating={modalRating}
+                isClickable
+                onRatingChange={onRatingChange}
+              />
+            </span>
             <div
               className={`${styles['form__field']} ${styles['form__field--textarea']}`}
             >
@@ -104,11 +145,12 @@ function ReviewModal({ onModalWindowClose }) {
                 id="comment"
                 placeholder="Комментарий"
                 required
-                ref={commentRef}
+                value={comment}
+                onChange={onCommentChange}
               />
             </div>
           </div>
-          <Button modifier="primary" type="submit" onClick={() => {}}>
+          <Button modifier="primary" type="submit" onClick={handleReviewSubmit}>
             Оставить отзыв
           </Button>
         </form>
@@ -118,15 +160,55 @@ function ReviewModal({ onModalWindowClose }) {
 }
 
 ReviewModal.propTypes = {
+  name: PropTypes.string,
+  advantages: PropTypes.string,
+  disadvantages: PropTypes.string,
+  modalRating: PropTypes.number,
+  comment: PropTypes.string,
+  onNameChange: PropTypes.func,
+  onAdvantagesChange: PropTypes.func,
+  onDisadvantagesChange: PropTypes.func,
+  onRatingChange: PropTypes.func,
+  onCommentChange: PropTypes.func,
+  onReviewSubmit: PropTypes.func,
   onModalWindowClose: PropTypes.func,
 };
 
+const mapStateToProps = (state) => ({
+  name: state.modal.name,
+  advantages: state.modal.advantages,
+  disadvantages: state.modal.disadvantages,
+  modalRating: state.modal.modalRating,
+  comment: state.modal.comment,
+});
+
 const mapDispatchToProps = (dispatch) => ({
+  onNameChange(evt) {
+    dispatch(setName(evt.target.value));
+  },
+  onAdvantagesChange(evt) {
+    dispatch(setAdvantages(evt.target.value));
+  },
+  onDisadvantagesChange(evt) {
+    dispatch(setDisadvantages(evt.target.value));
+  },
+  onRatingChange(ratingValue) {
+    dispatch(setRating(ratingValue));
+  },
+  onCommentChange(evt) {
+    dispatch(setComment(evt.target.value));
+  },
+  onReviewSubmit(reviewData) {
+    dispatch(addReview(reviewData));
+  },
   onModalWindowClose() {
     dispatch(setModalViewStatus(false));
   },
 });
 
-const ConnectedReviewModal = connect(null, mapDispatchToProps)(ReviewModal);
+const ConnectedReviewModal = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ReviewModal);
 
 export default ConnectedReviewModal;
