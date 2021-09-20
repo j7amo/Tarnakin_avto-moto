@@ -95,9 +95,15 @@
   color: #48494D;
   cursor: pointer;
 
+  &:focus {
+    border: 1px solid #FF0000;
+    outline: none;
+  }
+
   &:hover {
     border: 1px solid #48494D;
   }
+
 
   &--textarea {
     width: 300px;

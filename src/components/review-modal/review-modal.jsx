@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './review-modal.module.scss';
 import globalStyles from '../app/app.module.scss';
 import PropTypes from 'prop-types';
@@ -6,12 +6,38 @@ import Button from '../button/button';
 import { setModalViewStatus } from '../../store/action';
 import { connect } from 'react-redux';
 
-function ReviewModal({ onReviewButtonCloseClick }) {
+function ReviewModal({ onModalWindowClose }) {
+  const overlayRef = useRef(null);
+  const nameRef = useRef(null);
+  const advantagesRef = useRef(null);
+  const disAdvantagesRef = useRef(null);
+  const commentRef = useRef(null);
+
+  useEffect(() => {
+    const overlayElement = overlayRef.current;
+    const closeOnOverlayClick = (evt) => {
+      if (evt.target === overlayElement) {
+        onModalWindowClose();
+      }
+    };
+    const closeOnEsc = (evt) => {
+      if (evt.key === 'Escape') {
+        onModalWindowClose();
+      }
+    };
+    overlayElement.addEventListener('click', closeOnOverlayClick);
+    window.addEventListener('keydown', closeOnEsc);
+    return () => {
+      overlayElement.removeEventListener('click', closeOnOverlayClick);
+      window.removeEventListener('keydown', closeOnEsc);
+    };
+  }, []);
+
   return (
-    <div className={styles['overlay']}>
+    <div className={styles['overlay']} ref={overlayRef}>
       <div className={styles['modal']}>
         <h3 className={styles['modal__title']}>Оставить отзыв </h3>
-        <Button modifier="cross" onClick={() => onReviewButtonCloseClick(false)}/>
+        <Button modifier="cross" onClick={onModalWindowClose} />
         <form
           className={`${styles['modal__form']} ${styles['form']}`}
           action=""
@@ -29,6 +55,8 @@ function ReviewModal({ onReviewButtonCloseClick }) {
                 type="text"
                 placeholder="Имя"
                 required
+                autoFocus
+                ref={nameRef}
               />
             </div>
             <div className={styles['form__field']}>
@@ -43,6 +71,7 @@ function ReviewModal({ onReviewButtonCloseClick }) {
                 id="advantages"
                 type="text"
                 placeholder="Достоинства"
+                ref={advantagesRef}
               />
             </div>
             <div className={styles['form__field']}>
@@ -57,6 +86,7 @@ function ReviewModal({ onReviewButtonCloseClick }) {
                 id="disadvantages"
                 type="text"
                 placeholder="Недостатки"
+                ref={disAdvantagesRef}
               />
             </div>
             <span>Здесь будет блок со звёздами!</span>
@@ -74,10 +104,13 @@ function ReviewModal({ onReviewButtonCloseClick }) {
                 id="comment"
                 placeholder="Комментарий"
                 required
+                ref={commentRef}
               />
             </div>
           </div>
-          <Button modifier="primary" type="submit">Оставить отзыв</Button>
+          <Button modifier="primary" type="submit" onClick={() => {}}>
+            Оставить отзыв
+          </Button>
         </form>
       </div>
     </div>
@@ -85,12 +118,12 @@ function ReviewModal({ onReviewButtonCloseClick }) {
 }
 
 ReviewModal.propTypes = {
-  onReviewButtonCloseClick: PropTypes.func,
+  onModalWindowClose: PropTypes.func,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onReviewButtonCloseClick(status) {
-    dispatch(setModalViewStatus(status));
+  onModalWindowClose() {
+    dispatch(setModalViewStatus(false));
   },
 });
 

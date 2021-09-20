@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 import Button from '../button/button';
 import { connect } from 'react-redux';
 import { setModalViewStatus } from '../../store/action';
+import Rating from '../rating/rating';
 
 const getRatingsTextForm = (productRating) => {
   switch (productRating) {
@@ -69,7 +70,9 @@ function ProductReviews({ productReviews, onReviewButtonClick }) {
                 </div>
               </dl>
               <div className={styles['review__rating']}>
-                <span className={styles['review__stars-rating']}>{rating}</span>
+                <span className={styles['review__stars-rating']}>
+                  <Rating rating={rating}/>
+                </span>
                 <span className={styles['review__text-rating']}>
                   {getRatingsTextForm(rating)}
                 </span>
