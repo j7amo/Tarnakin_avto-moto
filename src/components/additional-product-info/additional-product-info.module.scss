@@ -1,3 +1,7 @@
+.info {
+  padding-left: 3px;
+}
+
 .info__header {
   margin-bottom: 30px;
 }
@@ -8,11 +12,18 @@
 
 .info__item {
   display: block;
-  padding: 11px 14px 14px 14px;
+  padding: 10px 14px 11px 14px;
   border: 1px solid #d7d9df;
   min-width: 195px;
   text-align: center;
   box-sizing: border-box;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 27px;
+  color: #48494D;
+  overflow: hidden;
+  max-width: 195px;
 
   &:hover,
   &--active {

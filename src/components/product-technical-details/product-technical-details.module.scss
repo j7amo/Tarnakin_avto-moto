@@ -12,7 +12,7 @@
   color: #48494D;
   padding-bottom: 8px;
   border-bottom: 1px solid #D7D9DF;
-  margin-bottom: 20px;
+  margin-bottom: 19px;
 
   &:last-child {
     margin-bottom: 0;
@@ -21,8 +21,12 @@
 
 .details__name {
   color: #48494D;
+  overflow: hidden;
+  max-width: 45%;
 }
 
 .details__value {
   color: #000000;
+  overflow: hidden;
+  max-width: 45%;
 }

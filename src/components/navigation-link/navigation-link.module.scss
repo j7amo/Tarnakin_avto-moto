@@ -1,11 +1,14 @@
 .navigation-link {
+  display: block;
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
   line-height: 22px;
   color: #48494d;
-
-  padding: 5px;
+  padding: 5px 0;
+  overflow: hidden;
+  min-width: 55px;
+  max-width: 218px;
 
   &:hover {
     opacity: 0.6;

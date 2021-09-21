@@ -26,10 +26,10 @@ function Card({ productInfo }) {
       </ul>
       <div className={styles['product-card__prices']}>
         <span className={styles['product-card__new-price']}>
-          {newPrice}&#x20bd;
+          {newPrice}
         </span>
         <span className={styles['product-card__old-price']}>
-          {oldPrice}&#x20bd;
+          {oldPrice}
         </span>
       </div>
       <div className={styles['product-card__button-container']}>

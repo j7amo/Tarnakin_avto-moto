@@ -4,6 +4,18 @@
 
 .slider__active-slide-container {
   margin-bottom: 39px;
+  width: 600px;
+  height: 375px;
+
+  img {
+    display: block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .slider__controls {
@@ -19,7 +31,15 @@
 }
 
 .slider__miniature {
+  width: 128px;
+  height: 80px;
   margin-right: 25px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &:last-child {
     margin-right: 0;

@@ -41,7 +41,7 @@ const productTechnicalDetails = [
 const contacts = [
   {
     name: 'Адрес',
-    value: 'Санкт-Петербург,набережная реки Карповки, дом 5',
+    value: 'Санкт-Петербург,\nнабережная реки Карповки, дом 5',
     type: ContactType.TEXT,
   },
   {

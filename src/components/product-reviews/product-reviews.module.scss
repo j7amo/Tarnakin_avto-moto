@@ -4,7 +4,7 @@
   > button {
     position: absolute;
     top: 0;
-    right: 0;
+    right: 5px;
   }
 }
 
@@ -17,7 +17,7 @@
 }
 
 .review__main-points {
-  margin-bottom: 20px;
+  margin-bottom: 21px;
 }
 
 .review__author {
@@ -26,7 +26,9 @@
   font-size: 20px;
   line-height: 27px;
   color: #48494D;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  max-width: 500px;
 }
 
 .review__main-point {
@@ -35,7 +37,7 @@
   align-items: flex-start;
   position: relative;
   padding-left: 20px;
-  margin-bottom: 13px;
+  margin-bottom: 15px;
 
   &--advantages {
     &::before {
@@ -47,6 +49,8 @@
       top:0;
       left: 0;
       color: #D12136;
+      overflow: hidden;
+      max-width: 500px;
     }
   }
 
@@ -60,12 +64,16 @@
       top:0;
       left: 0;
       color: #D12136;
+      overflow: hidden;
+      max-width: 500px;
     }
   }
 
   &:last-child {
     padding-left: 0;
     margin-bottom: 0;
+    overflow: hidden;
+    max-width: 1176px;
   }
 }
 
@@ -88,6 +96,10 @@
 
 .review__rating {
   margin-bottom: 26px;
+
+  svg {
+    margin-right: 4px;
+  }
 }
 
 .review__rating,
@@ -96,7 +108,7 @@
 }
 
 .review__stars-rating {
-  margin-right: 20px;
+  margin-right: 18px;
 }
 
 .review__text-rating,
@@ -115,5 +127,5 @@
   line-height: 19px;
   color: #000000;
   opacity: 0.4;
-  margin-right: 26px;
+  margin-right: 29px;
 }

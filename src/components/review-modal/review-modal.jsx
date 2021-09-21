@@ -157,7 +157,7 @@ function ReviewModal({
               />
             </div>
             <span className={styles['form__rating']}>
-              Оцените товар
+              <span className={styles['form__give-rating']}>Оцените товар</span>
               <Rating
                 rating={modalRating}
                 isClickable

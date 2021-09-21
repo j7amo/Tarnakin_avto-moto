@@ -5,6 +5,19 @@
 .additional-site-navigation {
   display: grid;
   grid-template-columns: repeat(7, auto);
-  grid-gap: 15px 55px;
-  padding: 30px 0;
+  grid-row-gap: 15px;
+  padding: 25px 0 30px 6px;
+
+  @media (max-width: 1199px) {
+    grid-column-gap: 3vw;
+  }
+
+  @media (min-width: 1200px) {
+    grid-column-gap: 64px;
+  }
+}
+
+.additional-site-navigation__item {
+  min-width: 65px;
+  max-width: 218px;
 }

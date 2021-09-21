@@ -1,14 +1,18 @@
 .button {
   padding: 16px 20px;
+  font-family: 'OpenSans', 'Tahoma', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
   line-height: 19px;
   text-align: center;
-  letter-spacing: 0.12em;
   text-transform: uppercase;
+  letter-spacing: 0.12em;
   border: none;
   cursor: pointer;
+  box-sizing: border-box;
+  overflow: hidden;
+  max-width: 300px;
 
   &--primary {
     background: #d12136;
@@ -27,6 +31,7 @@
     background: #ffffff;
     color: #d12136;
     border: 1px solid #d12136;
+    letter-spacing: 0.11em;
 
     &:hover {
       background: #d12136;

@@ -11,7 +11,7 @@ function MainFooter({ footerLinks }) {
       <CenteringContainer>
         <ul className={styles['additional-site-navigation']}>
           {footerLinks.map(({ linkTitle, href }) => (
-            <li key={nanoid()}>
+            <li key={nanoid()} className={styles['additional-site-navigation__item']}>
               <NavigationLink linkTitle={linkTitle} href={href} />
             </li>
           ))}
