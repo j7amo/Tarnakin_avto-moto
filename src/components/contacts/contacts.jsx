@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './contacts.module.scss';
+import globalStyles from '../app/app.module.scss';
 import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { ContactType } from '../../const';
@@ -10,9 +11,23 @@ const getElementBasedOnType = (contactType, value) => {
     case ContactType.TEXT:
       return value;
     case ContactType.PHONE:
-      return <a href={`tel:${value.replaceAll(/[-() ]/g, '')}`}>{value}</a>;
+      return (
+        <a href={`tel:${value.replaceAll(/[-() ]/g, '')}`}>
+          <span className={globalStyles['visually-hidden']}>
+            Позвоните нам!
+          </span>
+          {value}
+        </a>
+      );
     case ContactType.EMAIL:
-      return <a href={`mailto:${value}`}>{value}</a>;
+      return (
+        <a href={`mailto:${value}`}>
+          <span className={globalStyles['visually-hidden']}>
+            Напишите нам!
+          </span>
+          {value}
+        </a>
+      );
     default:
       break;
   }
@@ -31,7 +46,7 @@ function Contacts({ contacts }) {
           </div>
         ))}
       </dl>
-      <MapContainer/>
+      <MapContainer />
     </div>
   );
 }

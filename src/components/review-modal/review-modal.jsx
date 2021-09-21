@@ -4,7 +4,8 @@ import globalStyles from '../app/app.module.scss';
 import PropTypes from 'prop-types';
 import Button from '../button/button';
 import {
-  addReview, clearModalData,
+  addReview,
+  clearModalData,
   setAdvantages,
   setComment,
   setDisadvantages,
@@ -14,6 +15,13 @@ import {
 } from '../../store/action';
 import { connect } from 'react-redux';
 import Rating from '../rating/rating';
+import {
+  getAdvantages,
+  getComment,
+  getDisadvantages,
+  getModalRating,
+  getName
+} from '../../store/selectors';
 
 function ReviewModal({
   name,
@@ -38,6 +46,13 @@ function ReviewModal({
   const commentInputContainerClassName = commentInputError
     ? `${styles['form__field']} ${styles['form__field--textarea']} ${styles['form__field--error']}`
     : `${styles['form__field']} ${styles['form__field--textarea']}`;
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
 
   useEffect(() => {
     if (!name) {
@@ -211,11 +226,11 @@ ReviewModal.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  name: state.modal.name,
-  advantages: state.modal.advantages,
-  disadvantages: state.modal.disadvantages,
-  modalRating: state.modal.modalRating,
-  comment: state.modal.comment,
+  name: getName(state),
+  advantages: getAdvantages(state),
+  disadvantages: getDisadvantages(state),
+  modalRating: getModalRating(state),
+  comment: getComment(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

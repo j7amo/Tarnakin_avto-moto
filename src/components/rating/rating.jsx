@@ -5,6 +5,7 @@ import Star from '../star/star';
 import { nanoid } from 'nanoid';
 import { setRating } from '../../store/action';
 import { connect } from 'react-redux';
+import {getModalRating} from '../../store/selectors';
 
 const STAR_COUNT = 5;
 const StarFillColor = {
@@ -68,7 +69,7 @@ Rating.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  modalRating: state.modal.modalRating,
+  modalRating: getModalRating(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

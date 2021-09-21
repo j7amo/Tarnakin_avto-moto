@@ -6,19 +6,28 @@ import Button from '../button/button';
 import { connect } from 'react-redux';
 import { setModalViewStatus } from '../../store/action';
 import Rating from '../rating/rating';
+import {getReviews} from '../../store/selectors';
+
+const RatingValue = {
+  HORRIBLE: 'Ну и лажа!',
+  NOT_ADVISABLE: 'Не советует',
+  ADVISABLE: 'Советует',
+  RECOMMENDED: 'Рекомендует',
+  STRONGLY_RECOMMENDED: 'Настоятельно рекомендует',
+};
 
 const getRatingsTextForm = (productRating) => {
   switch (productRating) {
     case 1:
-      return 'Ну и лажа!';
+      return RatingValue.HORRIBLE;
     case 2:
-      return 'Не советует';
+      return RatingValue.NOT_ADVISABLE;
     case 3:
-      return 'Советует';
+      return RatingValue.ADVISABLE;
     case 4:
-      return 'Рекомендует';
+      return RatingValue.RECOMMENDED;
     case 5:
-      return 'Настоятельно рекомендует';
+      return RatingValue.STRONGLY_RECOMMENDED;
     default:
       break;
   }
@@ -104,7 +113,7 @@ ProductReviews.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  productReviews: state.reviews.reviews,
+  productReviews: getReviews(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

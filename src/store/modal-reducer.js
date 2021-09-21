@@ -6,21 +6,21 @@ const localStorageReviewModalData = localStorage.getItem('reviewModalData')
 
 const initialState = localStorageReviewModalData
   ? {
-      viewStatus: false,
-      name: localStorageReviewModalData.name,
-      advantages: localStorageReviewModalData.advantages,
-      disadvantages: localStorageReviewModalData.disadvantages,
-      modalRating: localStorageReviewModalData.modalRating,
-      comment: localStorageReviewModalData.comment,
-    }
+    viewStatus: false,
+    name: localStorageReviewModalData.name,
+    advantages: localStorageReviewModalData.advantages,
+    disadvantages: localStorageReviewModalData.disadvantages,
+    modalRating: localStorageReviewModalData.modalRating,
+    comment: localStorageReviewModalData.comment,
+  }
   : {
-      viewStatus: false,
-      name: '',
-      advantages: '',
-      disadvantages: '',
-      modalRating: 0,
-      comment: '',
-    };
+    viewStatus: false,
+    name: '',
+    advantages: '',
+    disadvantages: '',
+    modalRating: 0,
+    comment: '',
+  };
 
 const modalReducer = (state = initialState, action) => {
   switch (action.type) {

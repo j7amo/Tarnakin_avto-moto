@@ -7,6 +7,7 @@ import MainPageMain from '../main-page-main/main-page-main';
 import ProductInfo from '../product-info/product-info';
 import ReviewModal from '../review-modal/review-modal';
 import { connect } from 'react-redux';
+import {getViewStatus} from '../../store/selectors';
 
 const headerLinks = [
   {
@@ -79,7 +80,7 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  viewStatus: state.modal.viewStatus,
+  viewStatus: getViewStatus(state),
 });
 
 const ConnectedApp = connect(mapStateToProps, null)(App);

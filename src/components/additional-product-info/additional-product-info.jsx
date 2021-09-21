@@ -7,6 +7,12 @@ import ProductReviews from '../product-reviews/product-reviews';
 import Contacts from '../contacts/contacts';
 import { ContactType } from '../../const';
 
+const TabName = {
+  TECH_DETAILS: 'Характеристики',
+  REVIEWS: 'Отзывы',
+  CONTACTS: 'Контакты',
+};
+
 const productTechnicalDetails = [
   {
     name: 'Трансмиссия',
@@ -63,15 +69,15 @@ const contacts = [
 
 const getComponentByActiveTab = (tab) => {
   switch (tab) {
-    case 'Характеристики':
+    case TabName.TECH_DETAILS:
       return (
         <ProductTechnicalDetails
           productTechnicalDetails={productTechnicalDetails}
         />
       );
-    case 'Отзывы':
+    case TabName.REVIEWS:
       return <ProductReviews />;
-    case 'Контакты':
+    case TabName.CONTACTS:
       return <Contacts contacts={contacts} />;
     default:
       break;
