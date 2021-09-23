@@ -48,6 +48,8 @@ export const footerLinks = [
   },
 ];
 
+export const SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE = 3;
+
 export const TechDetailsType = {
   FUEL_TYPE: 'fuel-type',
   TRANSMISSION_TYPE: 'transmission-type',

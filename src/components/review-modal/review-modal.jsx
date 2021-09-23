@@ -50,8 +50,8 @@ function ReviewModal({
 
   const handleReviewSubmit = (evt) => {
     evt.preventDefault();
-    !name ? setNameInputError(true) : setNameInputError(false);
-    !comment ? setCommentInputError(true) : setCommentInputError(false);
+    setNameInputError(!name);
+    setCommentInputError(!comment);
     if (name && comment) {
       const review = {
         name: name,

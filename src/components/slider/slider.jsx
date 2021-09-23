@@ -3,6 +3,7 @@ import styles from './slider.module.scss';
 import PropTypes from 'prop-types';
 import Button from '../button/button';
 import { nanoid } from 'nanoid';
+import { SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE } from '../../const';
 
 function Slider({ sliderImages }) {
   const [activeSlide, setActiveSlide] = useState(sliderImages[0]);
@@ -10,13 +11,13 @@ function Slider({ sliderImages }) {
   const activeSlideIndex = sliderImages.indexOf(activeSlide);
   const remainingSlides = sliderImages.length - 1 - activeSlideIndex;
   let slidesToMap = [];
-  if (sliderImages.length > 3 && remainingSlides > 1) {
-    slidesToMap = sliderImages.slice(activeSlideIndex, activeSlideIndex + 3);
-  } else if (sliderImages.length > 3 && remainingSlides === 1) {
+  if (sliderImages.length > SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE && remainingSlides > 1) {
+    slidesToMap = sliderImages.slice(activeSlideIndex, activeSlideIndex + SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE);
+  } else if (sliderImages.length > SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE && remainingSlides === 1) {
     slidesToMap = sliderImages.slice(activeSlideIndex - 1, activeSlideIndex + 2);
-  } else if (sliderImages.length > 3 && remainingSlides === 0) {
+  } else if (sliderImages.length > SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE && remainingSlides === 0) {
     slidesToMap = sliderImages.slice(activeSlideIndex - 2, activeSlideIndex + 1);
-  } else if (sliderImages.length <= 3) {
+  } else if (sliderImages.length <= SLIDER_VISIBLE_MINIATURES_CONTAINER_SIZE) {
     slidesToMap = sliderImages;
   }
 
