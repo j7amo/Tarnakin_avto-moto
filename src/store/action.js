@@ -1,17 +1,17 @@
 export const ActionType = {
-  SET_MODAL_VIEW_STATUS: 'modal/modalViewStatusSet',
+  SET_VIEW_STATUS: 'modal/viewStatusSet',
   SET_NAME: 'modal/nameSet',
   SET_ADVANTAGES: 'modal/advantagesSet',
   SET_DISADVANTAGES: 'modal/disadvantagesSet',
   SET_RATING: 'modal/ratingSet',
   SET_COMMENT: 'modal/commentSet',
-  CLEAR_MODAL_DATA: 'modal/modalDataCleared',
+  CLEAR_DATA: 'modal/dataCleared',
   ADD_REVIEW: 'reviews/reviewAdded',
 };
 
-export function setModalViewStatus(status) {
+export function setViewStatus(status) {
   return {
-    type: ActionType.SET_MODAL_VIEW_STATUS,
+    type: ActionType.SET_VIEW_STATUS,
     payload: status,
   };
 }
@@ -51,9 +51,9 @@ export function setComment(comment) {
   };
 }
 
-export function clearModalData() {
+export function clearData() {
   return {
-    type: ActionType.CLEAR_MODAL_DATA,
+    type: ActionType.CLEAR_DATA,
   };
 }
 

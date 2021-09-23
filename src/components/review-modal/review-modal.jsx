@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import Button from '../button/button';
 import {
   addReview,
-  clearModalData,
+  clearData,
   setAdvantages,
   setComment,
   setDisadvantages,
-  setModalViewStatus,
+  setViewStatus,
   setName,
   setRating
 } from '../../store/action';
@@ -37,9 +37,10 @@ function ReviewModal({
   onReviewSubmit,
   onModalWindowClose,
 }) {
-  const [nameInputError, setNameInputError] = useState(true);
-  const [commentInputError, setCommentInputError] = useState(true);
+  const [nameInputError, setNameInputError] = useState(false);
+  const [commentInputError, setCommentInputError] = useState(false);
   const overlayRef = useRef(null);
+  const modalRef = useRef(null);
   const nameInputContainerClassName = nameInputError
     ? `${styles['form__field']} ${styles['form__field--name']} ${styles['form__field--error']}`
     : `${styles['form__field']} ${styles['form__field--name']}`;
@@ -47,28 +48,52 @@ function ReviewModal({
     ? `${styles['form__field']} ${styles['form__field--textarea']} ${styles['form__field--error']}`
     : `${styles['form__field']} ${styles['form__field--textarea']}`;
 
+  const handleReviewSubmit = (evt) => {
+    evt.preventDefault();
+    !name ? setNameInputError(true) : setNameInputError(false);
+    !comment ? setCommentInputError(true) : setCommentInputError(false);
+    if (name && comment) {
+      const review = {
+        name: name,
+        advantages: advantages,
+        disadvantages: disadvantages,
+        rating: modalRating,
+        comment: comment,
+      };
+      onReviewSubmit(review);
+      localStorage.removeItem('reviewModalData');
+      onModalWindowClose();
+    }
+  };
+
+  const handleKeyPressOnFirstTabbableElement = (evt, tabbables) => {
+    evt.preventDefault();
+    if (evt.shiftKey && evt.key === 'Tab') {
+      tabbables[tabbables.length - 1].focus();
+    } else if (!evt.shiftKey && evt.key === 'Tab') {
+      tabbables[1].focus();
+    } else if (evt.key === 'Enter') {
+      onModalWindowClose();
+    }
+  };
+
+  const handleKeyPressOnLastTabbableElement = (evt, tabbables) => {
+    evt.preventDefault();
+    if (!evt.shiftKey && evt.key === 'Tab') {
+      tabbables[0].focus();
+    } else if (evt.shiftKey && evt.key === 'Tab') {
+      tabbables[tabbables.length - 2].focus();
+    } else if (evt.key === 'Enter') {
+      handleReviewSubmit(evt);
+    }
+  };
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = 'unset';
     };
   }, []);
-
-  useEffect(() => {
-    if (!name) {
-      setNameInputError(true);
-    } else if (name) {
-      setNameInputError(false);
-    }
-  }, [name]);
-
-  useEffect(() => {
-    if (!comment) {
-      setCommentInputError(true);
-    } else if (comment) {
-      setCommentInputError(false);
-    }
-  }, [comment]);
 
   useEffect(() => {
     const overlayElement = overlayRef.current;
@@ -82,11 +107,34 @@ function ReviewModal({
         onModalWindowClose();
       }
     };
+
     overlayElement.addEventListener('click', closeOnOverlayClick);
     window.addEventListener('keydown', closeOnEsc);
     return () => {
       overlayElement.removeEventListener('click', closeOnOverlayClick);
       window.removeEventListener('keydown', closeOnEsc);
+    };
+  }, []);
+
+  useEffect(() => {
+    const tabbableElements = modalRef.current.querySelectorAll(
+      'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+    );
+    tabbableElements[0].addEventListener('keydown', (evt) =>
+      handleKeyPressOnFirstTabbableElement(evt, tabbableElements),
+    );
+    tabbableElements[tabbableElements.length - 1].addEventListener(
+      'keydown',
+      (evt) => handleKeyPressOnLastTabbableElement(evt, tabbableElements),
+    );
+    return () => {
+      tabbableElements[0].removeEventListener('keydown', (evt) =>
+        handleKeyPressOnFirstTabbableElement(evt, tabbableElements),
+      );
+      tabbableElements[tabbableElements.length - 1].removeEventListener(
+        'keydown',
+        (evt) => handleKeyPressOnLastTabbableElement(evt, tabbableElements),
+      );
     };
   }, []);
 
@@ -101,24 +149,11 @@ function ReviewModal({
     localStorage.setItem('reviewModalData', JSON.stringify(reviewModalData));
   }, [name, advantages, disadvantages, modalRating, comment]);
 
-  const handleReviewSubmit = () => {
-    const review = {
-      name: name,
-      advantages: advantages,
-      disadvantages: disadvantages,
-      rating: modalRating,
-      comment: comment,
-    };
-    onReviewSubmit(review);
-    localStorage.removeItem('reviewModalData');
-    onModalWindowClose();
-  };
-
   return (
     <div className={styles['overlay']} ref={overlayRef}>
-      <div className={styles['modal']}>
+      <div className={styles['modal']} ref={modalRef}>
         <h3 className={styles['modal__title']}>Оставить отзыв </h3>
-        <Button modifier="cross" onClick={onModalWindowClose} />
+        <Button modifier="cross" onClick={onModalWindowClose}/>
         <form
           className={`${styles['modal__form']} ${styles['form']}`}
           action=""
@@ -187,7 +222,7 @@ function ReviewModal({
                 Оставьте ваш комментарий о продукте
               </label>
               <textarea
-                className={`${styles['form__input']} ${styles['form__input--textarea']} ${styles['form__field--error']}`}
+                className={`${styles['form__input']} ${styles['form__input--textarea']}`}
                 id="comment"
                 placeholder="Комментарий"
                 required
@@ -196,12 +231,7 @@ function ReviewModal({
               />
             </div>
           </div>
-          <Button
-            modifier="primary"
-            type="submit"
-            onClick={handleReviewSubmit}
-            disabled={!name || !comment}
-          >
+          <Button modifier="primary" type="submit" onClick={handleReviewSubmit}>
             Оставить отзыв
           </Button>
         </form>
@@ -251,10 +281,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onReviewSubmit(reviewData) {
     dispatch(addReview(reviewData));
-    dispatch(clearModalData());
+    dispatch(clearData());
   },
   onModalWindowClose() {
-    dispatch(setModalViewStatus(false));
+    dispatch(setViewStatus(false));
   },
 });
 

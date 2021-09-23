@@ -5,67 +5,8 @@ import { nanoid } from 'nanoid';
 import ProductTechnicalDetails from '../product-technical-details/product-technical-details';
 import ProductReviews from '../product-reviews/product-reviews';
 import Contacts from '../contacts/contacts';
-import { ContactType } from '../../const';
-
-const TabName = {
-  TECH_DETAILS: 'Характеристики',
-  REVIEWS: 'Отзывы',
-  CONTACTS: 'Контакты',
-};
-
-const productTechnicalDetails = [
-  {
-    name: 'Трансмиссия',
-    value: 'Роботизированная',
-  },
-  {
-    name: 'Мощность двигателя, л.с.',
-    value: '249',
-  },
-  {
-    name: 'Тип двигателя',
-    value: 'Бензиновый',
-  },
-  {
-    name: 'Привод',
-    value: 'Полный',
-  },
-  {
-    name: 'Объем двигателя, л',
-    value: '2.4',
-  },
-  {
-    name: 'Макс. крутящий момент',
-    value: '370/4500',
-  },
-  {
-    name: 'Количество цилиндров',
-    value: '4',
-  },
-];
-
-const contacts = [
-  {
-    name: 'Адрес',
-    value: 'Санкт-Петербург,\nнабережная реки Карповки, дом 5',
-    type: ContactType.TEXT,
-  },
-  {
-    name: 'Режим работы',
-    value: 'Ежедневно, с 10:00 до 21:00',
-    type: ContactType.TEXT,
-  },
-  {
-    name: 'Телефон',
-    value: '8 (800) 333-55-99',
-    type: ContactType.PHONE,
-  },
-  {
-    name: 'E-mail',
-    value: 'info@avto-moto.ru',
-    type: ContactType.EMAIL,
-  },
-];
+import { TabName } from '../../const';
+import { productTechnicalDetails, contacts} from '../../mocks/mocks';
 
 const getComponentByActiveTab = (tab) => {
   switch (tab) {

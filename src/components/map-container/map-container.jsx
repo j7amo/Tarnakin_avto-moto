@@ -1,12 +1,7 @@
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import locationPin from '../../assets/img/location-pin.svg';
-
-const MAP_CONTAINER_WIDTH = '431px';
-const DEFAULT_LAT = 59.96820293650412;
-const DEFAULT_LNG = 30.31651929172663;
-const ZOOM_LEVEL = 15;
-const API_KEY = 'AIzaSyCoSlfX414rTxk0YaOP8E4bvVxRmX4lMlg';
+import { MAP_CONTAINER_WIDTH,DEFAULT_LAT, DEFAULT_LNG, ZOOM_LEVEL, API_KEY } from '../../const';
 
 function MapContainer() {
   const mapStyles = {

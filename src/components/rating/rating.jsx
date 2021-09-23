@@ -6,16 +6,7 @@ import { nanoid } from 'nanoid';
 import { setRating } from '../../store/action';
 import { connect } from 'react-redux';
 import {getModalRating} from '../../store/selectors';
-
-const STAR_COUNT = 5;
-const StarFillColor = {
-  ACTIVE: '#D12136',
-  INACTIVE: '#BDBEC2',
-};
-const StarSize = {
-  WIDTH_BIG: 27,
-  HEIGHT_BIG: 27,
-};
+import { STAR_COUNT, StarFillColor, StarSize } from '../../const';
 
 function Rating({ rating, modalRating, onRatingChange, isClickable = false }) {
   const [hover, setHover] = useState(modalRating);

@@ -4,17 +4,10 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import Button from '../button/button';
 import { connect } from 'react-redux';
-import { setModalViewStatus } from '../../store/action';
+import { setViewStatus } from '../../store/action';
 import Rating from '../rating/rating';
 import {getReviews} from '../../store/selectors';
-
-const RatingValue = {
-  HORRIBLE: 'Ну и лажа!',
-  NOT_ADVISABLE: 'Не советует',
-  ADVISABLE: 'Советует',
-  RECOMMENDED: 'Рекомендует',
-  STRONGLY_RECOMMENDED: 'Настоятельно рекомендует',
-};
+import { RatingValue } from '../../const';
 
 const getRatingsTextForm = (productRating) => {
   switch (productRating) {
@@ -118,7 +111,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onReviewButtonClick(status) {
-    dispatch(setModalViewStatus(status));
+    dispatch(setViewStatus(status));
   },
 });
 

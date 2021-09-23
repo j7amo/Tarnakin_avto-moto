@@ -24,7 +24,7 @@ const initialState = localStorageReviewModalData
 
 const modalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SET_MODAL_VIEW_STATUS:
+    case ActionType.SET_VIEW_STATUS:
       return {
         ...state,
         viewStatus: action.payload,
@@ -54,7 +54,7 @@ const modalReducer = (state = initialState, action) => {
         ...state,
         comment: action.payload,
       };
-    case ActionType.CLEAR_MODAL_DATA:
+    case ActionType.CLEAR_DATA:
       return {
         ...state,
         viewStatus: false,

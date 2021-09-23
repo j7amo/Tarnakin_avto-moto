@@ -7,57 +7,8 @@ import MainPageMain from '../main-page-main/main-page-main';
 import ProductInfo from '../product-info/product-info';
 import ReviewModal from '../review-modal/review-modal';
 import { connect } from 'react-redux';
-import {getViewStatus} from '../../store/selectors';
-
-const headerLinks = [
-  {
-    linkTitle: 'Автомобили',
-    href: '#',
-  },
-  {
-    linkTitle: 'Контакты',
-    href: '#',
-  },
-  {
-    linkTitle: 'Услуги',
-    href: '#',
-  },
-  {
-    linkTitle: 'Вакансии',
-    href: '#',
-  },
-];
-
-const footerLinks = [
-  {
-    linkTitle: 'Корпоративным клиентам',
-    href: '#',
-  },
-  {
-    linkTitle: 'Клиентам',
-    href: '#',
-  },
-  {
-    linkTitle: 'Аренда авто',
-    href: '#',
-  },
-  {
-    linkTitle: 'Каршеринг',
-    href: '#',
-  },
-  {
-    linkTitle: 'Как продать авто',
-    href: '#',
-  },
-  {
-    linkTitle: 'Trade-in',
-    href: '#',
-  },
-  {
-    linkTitle: 'Test drive',
-    href: '#',
-  },
-];
+import { getViewStatus } from '../../store/selectors';
+import { headerLinks,footerLinks } from '../../const';
 
 function App({ viewStatus }) {
   return (

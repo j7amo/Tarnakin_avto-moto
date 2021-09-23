@@ -8,12 +8,13 @@ function Slider({ sliderImages }) {
   const [activeSlide, setActiveSlide] = useState(sliderImages[0]);
   const { mainSrcStandard, mainSrcRetina, alt } = activeSlide;
   const activeSlideIndex = sliderImages.indexOf(activeSlide);
+  const remainingSlides = sliderImages.length - 1 - activeSlideIndex;
   let slidesToMap = [];
-  if (sliderImages.length > 3 && sliderImages.length - 1 - activeSlideIndex > 1) {
+  if (sliderImages.length > 3 && remainingSlides > 1) {
     slidesToMap = sliderImages.slice(activeSlideIndex, activeSlideIndex + 3);
-  } else if (sliderImages.length > 3 && sliderImages.length - 1 - activeSlideIndex === 1) {
+  } else if (sliderImages.length > 3 && remainingSlides === 1) {
     slidesToMap = sliderImages.slice(activeSlideIndex - 1, activeSlideIndex + 2);
-  } else if (sliderImages.length > 3 && sliderImages.length - 1 - activeSlideIndex === 0) {
+  } else if (sliderImages.length > 3 && remainingSlides === 0) {
     slidesToMap = sliderImages.slice(activeSlideIndex - 2, activeSlideIndex + 1);
   } else if (sliderImages.length <= 3) {
     slidesToMap = sliderImages;
