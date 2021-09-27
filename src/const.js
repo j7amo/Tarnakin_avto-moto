@@ -93,4 +93,4 @@ export const MAP_CONTAINER_WIDTH = '431px';
 export const DEFAULT_LAT = 59.96820293650412;
 export const DEFAULT_LNG = 30.31651929172663;
 export const ZOOM_LEVEL = 15;
-export const API_KEY = 'AIzaSyCoSlfX414rTxk0YaOP8E4bvVxRmX4lMlg';
+export const API_KEY = 'API_KEY_IS_HIDDEN_FROM_PUBLIC_USE';
